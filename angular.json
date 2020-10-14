@@ -1,0 +1,253 @@
+{
+    "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+    "version": 1,
+    "projects": {
+        "ui": {
+            "projectType": "application",
+            "schematics": {},
+            "root": "apps/ui",
+            "sourceRoot": "apps/ui/src",
+            "prefix": "rh",
+            "architect": {
+                "build": {
+                    "builder": "@angular-builders/custom-webpack:browser",
+                    "options": {
+                        "preserveSymlinks": true,
+                        "outputPath": "dist/apps/ui",
+                        "index": "apps/ui/src/index.html",
+                        "main": "apps/ui/src/angular-main.ts",
+                        "tsConfig": "apps/ui/tsconfig.app.json",
+                        "polyfills": "apps/ui/src/polyfills.ts",
+                        "assets": [
+                            "apps/ui/src/assets",
+                            "apps/ui/src/favicon.ico"
+                        ],
+                        "styles": [],
+                        "scripts": [],
+                        "customWebpackConfig": {
+                            "path": "apps/ui/angular.webpack.js"
+                        }
+                    },
+                    "configurations": {
+                        "development": {
+                            "outputPath": "dist/apps/ui/development",
+                            "optimization": false,
+                            "outputHashing": "all",
+                            "sourceMap": true,
+                            "extractCss": true,
+                            "namedChunks": false,
+                            "aot": false,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": false
+                        },
+                        "qa": {
+                            "outputPath": "dist/apps/ui/qa",
+                            "optimization": false,
+                            "outputHashing": "all",
+                            "sourceMap": true,
+                            "extractCss": true,
+                            "namedChunks": false,
+                            "aot": false,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": false,
+                            "fileReplacements": [
+                                {
+                                    "replace": "apps/ui/src/environments/environment.dev.ts",
+                                    "with": "apps/ui/src/environments/environment.qa.ts"
+                                }
+                            ]
+                        },
+                        "production": {
+                            "outputPath": "dist/apps/ui/production",
+                            "optimization": true,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "extractCss": true,
+                            "namedChunks": false,
+                            "aot": true,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": true,
+                            "fileReplacements": [
+                                {
+                                    "replace": "apps/ui/src/environments/environment.dev.ts",
+                                    "with": "apps/ui/src/environments/environment.prod.ts"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "serve": {
+                    "builder": "@angular-builders/custom-webpack:dev-server",
+                    "options": {
+                        "browserTarget": "ui:build"
+                    },
+                    "configurations": {
+                        "dev": {
+                            "browserTarget": "ui:build:dev"
+                        },
+                        "web": {
+                            "browserTarget": "ui:build:web"
+                        },
+                        "production": {
+                            "browserTarget": "ui:build:production"
+                        }
+                    }
+                },
+                "test": {
+                    "builder": "@angular-builders/custom-webpack:karma",
+                    "options": {
+                        "preserveSymlinks": true,
+                        "main": "apps/ui/src/test.ts",
+                        "polyfills": "apps/ui/src/polyfills-test.ts",
+                        "tsConfig": "apps/ui/tsconfig.spec.json",
+                        "karmaConfig": "apps/ui/src/karma.conf.js",
+                        "scripts": [],
+                        "styles": [
+                            "apps/ui/styles/main-style.scss"
+                        ],
+                        "assets": [
+                            "apps/ui/src/assets",
+                            "apps/ui/src/favicon.ico"
+                        ],
+                        "customWebpackConfig": {
+                            "path": "apps/ui/angular.webpack.js",
+                            "target": "electron-renderer"
+                        }
+                    }
+                }
+            }
+        },
+        "main": {
+            "root": "apps/main",
+            "sourceRoot": "apps/main/src",
+            "projectType": "application",
+            "prefix": "main",
+            "schematics": {},
+            "architect": {
+                "build": {
+                    "builder": "nx-electron:build",
+                    "options": {
+                        "outputPath": "dist/apps/main",
+                        "main": "apps/main/src/main.ts",
+                        "tsConfig": "apps/main/tsconfig.app.json",
+                        "assets": []
+                    },
+                    "configurations": {
+                        "development": {
+                            "outputPath": "dist/apps/main/development",
+                            "optimization": false,
+                            "extractLicenses": true,
+                            "inspect": true,
+                            "fileReplacements": [
+                                {
+                                    "replace": "apps/main/src/environments/environment.debug.ts",
+                                    "with": "apps/main/src/environments/environment.dev.ts"
+                                }
+                            ]
+                        },
+                        "qa": {
+                            "outputPath": "dist/apps/main/qa",
+                            "optimization": true,
+                            "extractLicenses": true,
+                            "inspect": false,
+                            "fileReplacements": [
+                                {
+                                    "replace": "apps/main/src/environments/environment.debug.ts",
+                                    "with": "apps/main/src/environments/environment.qa.ts"
+                                }
+                            ]
+                        },
+                        "production": {
+                            "outputPath": "dist/apps/main/production",
+                            "optimization": true,
+                            "extractLicenses": true,
+                            "inspect": false,
+                            "fileReplacements": [
+                                {
+                                    "replace": "apps/main/src/environments/environment.debug.ts",
+                                    "with": "apps/main/src/environments/environment.prod.ts"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "serve": {
+                    "builder": "nx-electron:execute",
+                    "options": {
+                        "buildTarget": "main:build"
+                    }
+                },
+                "package": {
+                    "builder": "nx-electron:package",
+                    "options": {
+                        "name": "main",
+                        "frontendProject": "ui",
+                        "out": "dist/packages/main"
+                    }
+                },
+                "make": {
+                    "builder": "nx-electron:make",
+                    "options": {
+                        "name": "main",
+                        "frontendProject": "ui",
+                        "out": "dist/executables/red-hand"
+                    },
+                    "configurations": {
+                        "development": {
+                            "name": "main/development",
+                            "frontendProject": "ui/development",
+                            "out": "dist/executables/red-hand/development"
+                        },
+                        "qa": {
+                            "name": "main/qa",
+                            "frontendProject": "ui/qa",
+                            "out": "dist/executables/red-hand/qa"
+                        },
+                        "production": {
+                            "name": "main/production",
+                            "frontendProject": "ui/production",
+                            "out": "dist/executables/red-hand/production"
+                        }
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:lint",
+                    "options": {
+                        "linter": "eslint",
+                        "config": "apps/main/.eslintrc",
+                        "tsConfig": [
+                            "apps/main/tsconfig.app.json",
+                            "apps/main/tsconfig.spec.json"
+                        ],
+                        "exclude": [
+                            "**/node_modules/**",
+                            "!apps/main/**"
+                        ]
+                    }
+                },
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "options": {
+                        "jestConfig": "apps/main/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        }
+    },
+    "cli": {
+        "defaultCollection": "@nrwl/angular"
+    },
+    "schematics": {
+        "@nrwl/angular:application": {
+            "unitTestRunner": "jest",
+            "e2eTestRunner": "cypress"
+        },
+        "@nrwl/angular:library": {
+            "unitTestRunner": "jest"
+        }
+    }
+}

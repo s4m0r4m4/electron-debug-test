@@ -1,0 +1,38 @@
+{
+    "$schema": "../../../../../node_modules/nx-electron/src/validation/maker.schema.json",
+    "productName": "ElectronTester",
+    "appId": "com.electronTestere",
+    "asar": true,
+    "buildVersion": "0.0.1",
+    "copyright": "Copyright Nobody",
+    "artifactName": "${productName}-${buildVersion}-${os}.${ext}",
+    "files": [
+        "**/*",
+        "!**/node_modules/*/{CHANGELOG.md,README.md,README,readme.md,readme}",
+        "!**/node_modules/*/{test,__tests__,tests,powered-test,example,examples}",
+        "!**/node_modules/*.d.ts",
+        "!**/node_modules/.bin",
+        "!**/*.{iml,o,hprof,orig,pyc,pyo,rbc,swp,csproj,sln,xproj}",
+        "!.editorconfig",
+        "!**/._*",
+        "!**/{.DS_Store,.git,.hg,.svn,CVS,RCS,SCCS,.gitignore,.gitattributes}",
+        "!**/{__pycache__,thumbs.db,.flowconfig,.idea,.vs,.nyc_output}",
+        "!**/{npm-debug.log,yarn.lock,.yarn-integrity,.yarn-metadata.json}",
+        "!**/.vscode",
+        "!**/common"
+    ],
+    "extraFiles": [],
+    "win": {
+        "target": ["nsis"],
+        // The signing stuff below is updated during build automation
+        "certificateSha1": null,
+        "rfc3161TimeStampServer": "http://timestamp.comodoca.com",
+        "signingHashAlgorithms": ["sha256"]
+    },
+    "nsis": {
+        "createDesktopShortcut": "always",
+        "createStartMenuShortcut": true,
+        "runAfterFinish": false,
+        "perMachine": true
+    }
+}

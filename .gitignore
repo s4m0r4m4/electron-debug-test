@@ -1,0 +1,15 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# ignore all js.map files (generated from typescript)
+/libs/**/*.js.map
+# ignore javascript in auto-generated libs
+/libs/framework**/*.js
+/libs/system-types/**/*.js
+
+# code coverage reports
+coverage
+
+# include the node_modules folder itself so symlinks work
+node_modules/**/*
+!node_modules/gitkeep.txt
+dist/**/*

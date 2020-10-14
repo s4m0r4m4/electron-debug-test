@@ -1,0 +1,37 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "MAIN",
+            "type": "node",
+            "request": "launch",
+            "port": 5858,
+            "protocol": "inspector",
+            "cwd": "${workspaceFolder:main}",
+            "sourceMapPathOverrides": {
+                "webpack:///./~/*": "${workspaceFolder:main}/../../node_modules/*",
+                "webpack:///./*": "${workspaceFolder:main}/../../*",
+                "webpack:///*": "${workspaceFolder:main}/../../*"
+            },
+            "runtimeExecutable": "${workspaceFolder:main}/../../node_modules/.bin/electron",
+            "windows": {
+                "runtimeExecutable": "${workspaceFolder:main}/../../node_modules/.bin/electron.cmd"
+            },
+            "args": [
+                "--inspect=5858", // must match "port" above
+                "--remote-debugging-port=9224", // must match port in ui launch.json
+                "${workspaceFolder:main}/../../dist/apps/main/main.js", // path to entry file (if relative,relative to cwd above)
+                // "--preserve-symlinks",
+                // "--preserve-symlinks-main"
+            ],
+            "sourceMaps": true,
+            "outputCapture": "std",
+            "preLaunchTask": "RedHand: BuildMain"
+            // "localRoot": "${workspaceFolder:main}", // needed to get breakpoints to work behind a symlink
+            // "remoteRoot": "C:\\AIMDev\\CI-Web\\apps\\main" // needed to get breakpoints to work behind a symlink
+        }
+    ]
+}

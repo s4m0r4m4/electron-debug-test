@@ -1,0 +1,101 @@
+{
+    "extends": ["tslint:recommended", "tslint-angular"],
+    "linterOptions": {
+        "exclude": ["./**/*.spec.ts", "./**/*.e2e-spec.ts"]
+    },
+    "rules": {
+        "array-type": [true, "array"],
+        "arrow-parens": true,
+        "arrow-return-shorthand": true,
+        "component-class-suffix": true,
+        "callable-types": true,
+        "class-name": true,
+        "deprecation": {
+            "severity": "warn"
+        },
+        "directive-class-suffix": true,
+        "forin": true,
+        "import-blacklist": [true, "rxjs/Rx"],
+        "import-spacing": true,
+        "indent": [true, "spaces", 4],
+        "interface-name": true,
+        "interface-over-type-literal": true,
+        "max-classes-per-file": true,
+        "max-line-length": [true, 140],
+        "member-access": true,
+        "member-ordering": [
+            true,
+            {
+                "order": [
+                    "static-field",
+                    "instance-field",
+                    "static-method",
+                    "instance-method"
+                ]
+            }
+        ],
+        "no-arg": true,
+        "no-bitwise": false,
+        "no-conflicting-lifecycle": true,
+        "no-consecutive-blank-lines": true,
+        "no-construct": true,
+        "no-debugger": true,
+        "no-duplicate-super": true,
+        "no-empty": false,
+        "no-empty-interface": true,
+        "no-eval": true,
+        "no-host-metadata-property": true,
+        "no-inferrable-types": false,
+        "no-input-rename": true,
+        "no-inputs-metadata-property": true,
+        "no-misused-new": true,
+        "no-non-null-assertion": true,
+        "no-output-native": true,
+        "no-output-on-prefix": true,
+        "no-output-rename": true,
+        "no-outputs-metadata-property": true,
+        "no-redundant-jsdoc": true,
+        "no-shadowed-variable": true,
+        "no-string-literal": false,
+        "no-string-throw": true,
+        "no-trailing-whitespace": true,
+        "no-unnecessary-initializer": true,
+        "no-unused-expression": true,
+        "no-var-keyword": true,
+        "nx-enforce-module-boundaries": [
+            true,
+            {
+                "allow": [],
+                "depConstraints": [
+                    {
+                        "onlyDependOnLibsWithTags": ["*"],
+                        "sourceTag": "*"
+                    }
+                ],
+                "enforceBuildableLibDependency": true
+            }
+        ],
+        "object-literal-sort-keys": false,
+        "object-literal-shorthand": false,
+        "prefer-const": true,
+        "prefer-template": [true, "allow-single-concat"],
+        "quotemark": [true, "single"],
+        "radix": true,
+        "semicolon": [true, "always"],
+        "template-banana-in-box": true,
+        "template-no-negated-async": true,
+        "trailing-comma": false,
+        "triple-equals": [true, "allow-null-check"],
+        "typedef": true,
+        "unified-signatures": true,
+        "unnecessary-constructor": false,
+        "use-lifecycle-interface": true,
+        "use-pipe-transform-interface": true,
+        "variable-name": false
+    },
+    "rulesDirectory": [
+        "node_modules/@nrwl/workspace/src/tslint",
+        "node_modules/codelyzer",
+        "node_modules/tslint-angular"
+    ]
+}

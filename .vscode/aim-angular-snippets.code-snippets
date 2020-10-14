@@ -1,0 +1,188 @@
+{
+	// Examples and documentation: https://code.visualstudio.com/docs/editor/userdefinedsnippets#_language-snippet-scope
+
+	"AIM Function Header": {
+		"scope": "javascript, typescript",
+		"prefix": "nghdrfunction",
+		"body": [
+			"/******************************************************************************",
+			"* Function: ${1:functionName}",
+			"******************************************************************************/"
+		],
+		"description": "Insets a function header"
+	},
+	"AIM Class Header": {
+		"scope": "javascript, typescript",
+		"prefix": "nghdrclass",
+		"body": [
+			"/******************************************************************************",
+			"* Class: ${1:className}",
+			"******************************************************************************/"
+		],
+		"description": "Insets a class header"
+	},
+	"AIM Angular Module Header": {
+		"scope": "javascript, typescript",
+		"prefix": "nghdrmodule",
+		"body": [
+			"/******************************************************************************",
+			"* Module: ${1:moduleName}",
+			"******************************************************************************/"
+		],
+		"description": "Insets a header for an angular module"
+	},
+	"AIM Interface Header": {
+		"scope": "javascript, typescript",
+		"prefix": "nghdrinterface",
+		"body": [
+			"/******************************************************************************",
+			"* Interface: ${1:interfaceName}",
+			"******************************************************************************/"
+		],
+		"description": "Insets an interface header"
+	},
+	"AIM Service Header": {
+		"scope": "javascript, typescript",
+		"prefix": "nghdrservice",
+		"body": [
+			"/******************************************************************************",
+			"* Service: ${1:serviceName}",
+			"******************************************************************************/"
+		],
+		"description": "Insets a service header"
+	},
+	"AIM File Header": {
+		"scope": "javascript, typescript, json, jsonc, html",
+		"prefix": "nghdrfile",
+		"body": [
+			"/******************************************************************************",
+			"* File: $TM_FILENAME",
+			"* Author: ${2:Author Name}",
+			"* Date: $CURRENT_MONTH_NAME $CURRENT_DATE $CURRENT_YEAR",
+			"******************************************************************************/"
+		],
+		"description": "Insets a file header"
+	},
+	"AIM Member Variables Header": {
+		"scope": "javascript, typescript",
+		"prefix": "nghdrmembervariables",
+		"body": [
+			"/******************************************************************************",
+			"* Member Variables",
+			"******************************************************************************/"
+		],
+		"description": "Insets a comment header for member variables"
+	},
+	"AIM Constants Header": {
+		"scope": "javascript, typescript",
+		"prefix": "nghdrconstants",
+		"body": [
+			"/******************************************************************************",
+			"* Constants",
+			"******************************************************************************/"
+		],
+		"description": "Insets a comment header for constants"
+	},
+	"AIM Constructor Header": {
+		"scope": "javascript, typescript",
+		"prefix": "nghdrconstructor",
+		"body": [
+			"/******************************************************************************",
+			"* Constructor",
+			"******************************************************************************/"
+		],
+		"description": "Insets a comment header for the constructor"
+	},
+	"AIM Test Header": {
+		"scope": "javascript, typescript",
+		"prefix": "nghdrtest",
+		"body": [
+			"/******************************************************************************",
+			"* Test: ${1:testName}",
+			"******************************************************************************/"
+		],
+		"description": "Insets a comment header for a test case"
+	},
+	"AIM New Test (Full)": {
+		"scope": "javascript, typescript",
+		"prefix": "ngtest",
+		"body": [
+			"/******************************************************************************",
+			"* Test: ${1:testName}",
+			"******************************************************************************/",
+			"it('${1:testName}', () => {",
+			"",
+			"});"
+		],
+		"description": "Insets a new test case with comment header"
+	},
+	"AIM Function (Full)": {
+		"scope": "javascript, typescript",
+		"prefix": "ngfunction",
+		"body": [
+			"/******************************************************************************",
+			"* Function: ${1:functionName}",
+			"******************************************************************************/",
+			"public ${1:functionName}() {",
+			"",
+			"}"
+		],
+		"description": "Insets a new function with comment header"
+	},
+	"AIM Getter Function": {
+		"scope": "javascript, typescript",
+		"prefix": "nggetter",
+		"body": [
+			"/******************************************************************************",
+			"* Getter: ${1:getternName}",
+			"******************************************************************************/",
+			"public get ${1:getterName}(): ${2:returnType} {",
+			"   return this.${3:returnParam};",
+			"}"
+		],
+		"description": "Insets a new getter function with comment header"
+	},
+	"AIM Resource String": {
+		"scope": "javascript, typescript",
+		"prefix": "aimres",
+		"body": [
+			"public abstract readonly ${1:RESOURCE_NAME}: string;"
+		],
+		"description": "Insets a new fixed resource string"
+	},
+	"AIM Resource Function": {
+		"scope": "javascript, typescript",
+		"prefix": "aimresfn",
+		"body": [
+			"public abstract readonly ${1:RESOURCE_NAME}_FORMAT: (sVal: string) => string;"
+		],
+		"description": "Insets a new fixed resource string function"
+    },
+    "Angular Component Input Validation": {
+		"scope": "javascript, typescript",
+		"prefix": "nginvalfull",
+		"body": [
+			"private readonly m_msgExceptions: AIMExceptionsMessages;",
+            "",
+            "/******************************************************************************",
+            "* Constructor",
+            "******************************************************************************/",
+            "public constructor(msgExceptions: AIMExceptionsMessages) {",
+            "    this.m_msgExceptions = msgExceptions;",
+            "}",
+            "",
+            "/******************************************************************************",
+            "* Function: ngOnInit",
+            "******************************************************************************/",
+            "public ngOnInit(): void {",
+            "    // Input Validation",
+            "    if (!${1:this.m_mMember}) {",
+            "        throw new Error(this.m_msgExceptions.INPUT_MISSING_FORMAT('${1:this.m_mMember}', ${1:this.m_mMember}));",
+            "    } else if (!(${1:this.m_mMember} instanceof ${2:InputType})) {",
+            "        throw new Error(this.m_msgExceptions.INPUT_WRONG_TYPE_FORMAT('${1:this.m_mMember}', typeof ${1:this.m_mMember}, ${3:ExpectedTypeName}));",
+            "    }",
+            "}"
+		],
+		"description": "Insets a complete block for input validation, including exception message member variable and constructor"
+    },
+}

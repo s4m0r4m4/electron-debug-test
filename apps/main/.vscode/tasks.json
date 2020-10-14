@@ -1,0 +1,12 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "RedHand: BuildMain",
+            "type": "npm",
+            "script": "build-main-dev",
+            "group": "build",
+            "problemMatcher": ["$eslint-stylish"]
+        }
+    ]
+}
